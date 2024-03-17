@@ -3,6 +3,10 @@
   <component name="NewModuleRootManager" inherit-compiler-output="true">
     <exclude-output />
     <content url="file://$MODULE_DIR$" />
+    <content url="file://$USER_HOME$/Downloads/beat-buzz">
+      <sourceFolder url="file://$USER_HOME$/Downloads/beat-buzz/src/main/java" isTestSource="false" />
+      <sourceFolder url="file://$USER_HOME$/Downloads/beat-buzz/src/test/java" isTestSource="false" />
+    </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
   </component>
