@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/beatbuzz-api.iml" filepath="$PROJECT_DIR$/.idea/beatbuzz-api.iml" />
+      <module fileurl="file://$USER_HOME$/Downloads/beat-buzz/beat-buzz.iml" filepath="$USER_HOME$/Downloads/beat-buzz/beat-buzz.iml" />
     </modules>
   </component>
 </project>
