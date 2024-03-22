@@ -1,0 +1,16 @@
+Index: beat-buzz/build.gradle
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>plugins {\r\n\tid 'java'\r\n\tid 'org.springframework.boot' version '3.3.0-M2'\r\n\tid 'io.spring.dependency-management' version '1.1.4'\r\n}\r\n\r\ngroup = 'org.launchcode'\r\nversion = '0.0.1-SNAPSHOT'\r\n\r\njava {\r\n\tsourceCompatibility = '17'\r\n}\r\n\r\nrepositories {\r\n\tmavenCentral()\r\n\tmaven { url 'https://repo.spring.io/milestone' }\r\n}\r\n\r\ndependencies {\r\n\timplementation 'org.springframework.boot:spring-boot-starter-data-jpa'\r\n\timplementation 'org.springframework.boot:spring-boot-starter-security'\r\n\timplementation 'org.springframework.boot:spring-boot-starter-thymeleaf'\r\n\timplementation 'org.springframework.boot:spring-boot-starter-validation'\r\n\timplementation 'org.springframework.boot:spring-boot-starter-web'\r\n\timplementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity6'\r\n\tdevelopmentOnly 'org.springframework.boot:spring-boot-devtools'\r\n\ttestImplementation 'org.springframework.boot:spring-boot-starter-test'\r\n\ttestImplementation 'org.springframework.security:spring-security-test'\r\n}\r\n\r\ntasks.named('test') {\r\n\tuseJUnitPlatform()\r\n}\r\n
+===================================================================
+diff --git a/beat-buzz/build.gradle b/beat-buzz/build.gradle
+--- a/beat-buzz/build.gradle	
++++ b/beat-buzz/build.gradle	
+@@ -1,6 +1,6 @@
+ plugins {
+ 	id 'java'
+-	id 'org.springframework.boot' version '3.3.0-M2'
++	id 'org.springframework.boot' version '3.2.3'
+ 	id 'io.spring.dependency-management' version '1.1.4'
+ }
+ 
