@@ -1,10 +1,10 @@
-package models;
+package org.launchcode.models;
 
 import jakarta.persistence.Entity;
 import jakarta.validation.constraints.NotNull;
 
 @Entity
-public class User extends AbstractEntity{
+public class User extends AbstractEntity {
     @NotNull
     private String username;
 
