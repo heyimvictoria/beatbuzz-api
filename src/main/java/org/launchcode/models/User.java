@@ -1,10 +1,7 @@
 package org.launchcode.models;
 
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.validation.constraints.NotNull;
 
@@ -29,5 +26,18 @@ public class User extends AbstractEntity implements Serializable {
 
     public String getUsername() {
         return username;
+    }
+
+    //added getters and setters
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPwHash() {
+        return pwHash;
+    }
+
+    public void setPwHash(String pwHash) {
+        this.pwHash = pwHash;
     }
 }
