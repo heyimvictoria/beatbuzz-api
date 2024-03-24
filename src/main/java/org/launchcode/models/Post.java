@@ -1,7 +1,9 @@
 package org.launchcode.models;
 
 import jakarta.persistence.*;
+import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 @Entity
 public class Post extends AbstractEntity {
@@ -11,8 +13,8 @@ public class Post extends AbstractEntity {
     @Size(max=500, message = "Exceeds character limit")
     private String content;
 
-    @NotBlank(message = "Rating is required")
-    private int starRating;
+    @NotNull(message = "Rating is required")
+    private Integer starRating;
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
