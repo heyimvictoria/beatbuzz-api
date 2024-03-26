@@ -1,1 +1,2 @@
 # beatbuzz-api
+Joshua Buehrer
