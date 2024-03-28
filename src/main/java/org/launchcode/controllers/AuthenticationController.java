@@ -1,9 +1,9 @@
 package org.launchcode.controllers;
 
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import org.launchcode.data.UserRepository;
-import jakarta.servlet.http.HttpSession;
 import org.launchcode.models.User;
 import org.launchcode.models.dto.LoginFormDTO;
 import org.launchcode.models.dto.RegisterFormDTO;
@@ -57,7 +57,7 @@ public class AuthenticationController {
             return "register";
         }
 
-        User existingUser = userRepository.findByUsername(registerFormDTO.getUsername());
+        User existingUser = userRepository.findByUserName(registerFormDTO.getUsername());
 
         if (existingUser != null) {
             errors.rejectValue("username", "username.alreadyexists", "A user with that username already exists");
@@ -80,38 +80,7 @@ public class AuthenticationController {
         return "redirect:";
         // redirect to home page maybe.//
     }
-    @PostMapping("/register")
-    public String processRegistrationForm(@ModelAttribute @Valid RegisterFormDTO registerFormDTO,
-                                          Errors errors, HttpServletRequest request,
-                                          Model model) {
 
-        if (errors.hasErrors()) {
-            model.addAttribute("title", "Register");
-            return "register";
-        }
-
-        User existingUser = userRepository.findByUsername(registerFormDTO.getUsername());
-
-        if (existingUser != null) {
-            errors.rejectValue("username", "username.alreadyexists", "A user with that username already exists");
-            model.addAttribute("title", "Register");
-            return "register";
-        }
-
-        String password = registerFormDTO.getPassword();
-        String verifyPassword = registerFormDTO.getVerifyPassword();
-        if (!password.equals(verifyPassword)) {
-            errors.rejectValue("password", "passwords.mismatch", "Passwords do not match");
-            model.addAttribute("title", "Register");
-            return "register";
-        }
-
-        User newUser = new User(registerFormDTO.getUsername(), registerFormDTO.getPassword());
-        userRepository.save(newUser);
-        setUserInSession(request.getSession(), newUser);
-
-        return "redirect:";
-    }
     @GetMapping("/login")
     public String displayLoginForm(Model model) {
         model.addAttribute("loginFormDTO",new LoginFormDTO());
@@ -128,7 +97,7 @@ public class AuthenticationController {
             return "login";
         }
 
-        User theUser = userRepository.findByUsername(loginFormDTO.getUsername());
+        User theUser = userRepository.findByUserName(loginFormDTO.getUsername());
 
         if (theUser == null) {
             errors.rejectValue("username", "user.invalid", "The given username does not exist");
