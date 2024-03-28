@@ -21,20 +21,14 @@ public class Post extends AbstractEntity {
     @Column(name = "album_name")
     private String albumName;
 
+    private int postId;
+
     public String getContent() {
         return content;
     }
 
     public void setContent(String content) {
         this.content = content;
-    }
-
-    public int getStarRating() {
-        return starRating;
-    }
-
-    public void setStarRating(int starRating) {
-        this.starRating = starRating;
     }
 
     public User getUser() {
@@ -49,6 +43,18 @@ public class Post extends AbstractEntity {
     }
     public String getAlbumName() {
         return albumName;
+    }
+
+    public int getPostId() {
+        return postId;
+    }
+
+    public void setPostId(int postId) {
+        this.postId = postId;
+    }
+
+    public void setStarRating(Integer starRating) {
+        this.starRating = starRating;
     }
 }
 
