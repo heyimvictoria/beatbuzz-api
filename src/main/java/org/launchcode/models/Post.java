@@ -21,8 +21,6 @@ public class Post extends AbstractEntity {
     @Column(name = "album_name")
     private String albumName;
 
-    private int postId;
-
     public String getContent() {
         return content;
     }
@@ -45,13 +43,7 @@ public class Post extends AbstractEntity {
         return albumName;
     }
 
-    public int getPostId() {
-        return postId;
-    }
 
-    public void setPostId(int postId) {
-        this.postId = postId;
-    }
 
     public void setStarRating(Integer starRating) {
         this.starRating = starRating;
