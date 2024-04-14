@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.validation.Errors;
 
+@RestController
 @Controller
 @RequestMapping("post")
 public class PostController {
