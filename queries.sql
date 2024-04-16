@@ -17,3 +17,16 @@ CREATE TABLE post (
     review_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (user_id) REFERENCES users(user_id)
 );
+
+--Sample User
+INSERT INTO users (id, pw_hash, username)
+VALUES
+    ('4', '123s23', 'Tests');
+
+-- Sample Data
+-- Insert sample data into the Post table
+INSERT INTO post (content, star_rating, user_id, album_name)
+VALUES
+    ('Great album, must listen!', 5, 1, 'LP4'),
+
+

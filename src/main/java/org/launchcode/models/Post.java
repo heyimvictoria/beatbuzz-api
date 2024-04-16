@@ -1,6 +1,8 @@
 package org.launchcode.models;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 @Entity
@@ -8,17 +10,20 @@ public class Post extends AbstractEntity {
 
     @NotBlank(message = "Review is required")
     @Column(length = 500)
-    @Size(max=500, message = "Exceeds character limit")
+    @Size(max = 500, message = "Exceeds character limit")
     private String content;
 
-    @NotBlank(message = "Rating is required")
+    @Column(name = "star_rating")
+    @Min(value = 1, message = "Rating must be at least 1")
+    @Max(value = 5, message = "Rating must be at most 5")
     private int starRating;
-    @ManyToOne
-    @JoinColumn(name = "user_id")
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id", nullable = false)
     private User user;
+
     @Column(name = "album_name")
     private String albumName;
-
     public String getContent() {
         return content;
     }
