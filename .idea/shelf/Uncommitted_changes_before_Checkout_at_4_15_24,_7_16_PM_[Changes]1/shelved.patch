@@ -1,0 +1,26 @@
+Index: src/main/java/org/launchcode/models/AbstractEntity.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package org.launchcode.models;\n\nimport jakarta.persistence.GeneratedValue;\nimport jakarta.persistence.Id;\nimport jakarta.persistence.MappedSuperclass;\n\nimport java.util.Objects;\n\n@MappedSuperclass\npublic abstract class AbstractEntity {\n    @Id\n    @GeneratedValue\n    private int id;\n\n    public int getId() {\n        return id;\n    }\n\n    @Override\n    public boolean equals(Object o) {\n        if (this == o) return true;\n        if (o == null || getClass() != o.getClass()) return false;\n        AbstractEntity that = (AbstractEntity) o;\n        return id == that.id;\n    }\n\n    @Override\n    public int hashCode() {\n        return Objects.hash(id);\n    }\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/org/launchcode/models/AbstractEntity.java b/src/main/java/org/launchcode/models/AbstractEntity.java
+--- a/src/main/java/org/launchcode/models/AbstractEntity.java	
++++ b/src/main/java/org/launchcode/models/AbstractEntity.java	
+@@ -8,6 +8,7 @@
+ 
+ @MappedSuperclass
+ public abstract class AbstractEntity {
++
+     @Id
+     @GeneratedValue
+     private int id;
+@@ -15,7 +16,6 @@
+     public int getId() {
+         return id;
+     }
+-
+     @Override
+     public boolean equals(Object o) {
+         if (this == o) return true;

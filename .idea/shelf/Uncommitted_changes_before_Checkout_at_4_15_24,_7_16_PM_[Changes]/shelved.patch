@@ -1,0 +1,36 @@
+Index: src/main/java/org/launchcode/controllers/PostController.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package org.launchcode.controllers;\n\nimport jakarta.validation.Valid;\nimport org.launchcode.data.PostRepository;\nimport org.launchcode.models.Post;\nimport org.springframework.beans.factory.annotation.Autowired;\nimport org.springframework.boot.Banner;\nimport org.springframework.stereotype.Controller;\nimport org.springframework.ui.Model;\nimport org.springframework.web.bind.annotation.*;\nimport org.springframework.validation.Errors;\n\n@RestController\n@Controller\n@RequestMapping(\"post\")\npublic class PostController {\n\n    @Autowired\n    private PostRepository postRepository;\n\n    @GetMapping(\"create\")\n    public String displayPostReviewForm(Model model) {\n        model.addAttribute(\"title\", \"Create Review\");\n        model.addAttribute(new Post());\n        return \"posts/create\";\n    }\n\n    @PostMapping(\"create\")\n    public String processPostReviewForm(@ModelAttribute @Valid Post newPost,\n                                         Errors errors, Model model) {\n        if(errors.hasErrors()) {\n            model.addAttribute(\"title\", \"Create Review\");\n            return \"posts/create\";\n        }\n\n        postRepository.save(newPost);\n        return \"redirect:/index\";\n    }\n\n    @GetMapping(\"delete\")\n    public String displayDeleteReviewForm(Model model) {\n        model.addAttribute(\"title\", \"Delete Review\");\n        return \"posts/delete\";\n    }\n\n    @PostMapping(\"delete\")\n    public String processDeleteReviewForm(@RequestParam(required = false) Integer reviewid){\n\n        if(reviewid != null) {\n            postRepository.deleteById(reviewid);\n        }\n        return \"redirect:/index\";\n\n    }\n\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/org/launchcode/controllers/PostController.java b/src/main/java/org/launchcode/controllers/PostController.java
+--- a/src/main/java/org/launchcode/controllers/PostController.java	
++++ b/src/main/java/org/launchcode/controllers/PostController.java	
+@@ -9,15 +9,24 @@
+ import org.springframework.ui.Model;
+ import org.springframework.web.bind.annotation.*;
+ import org.springframework.validation.Errors;
++import org.launchcode.models.AbstractEntity;
++import java.util.Optional;
++
++
+ 
+ @RestController
+-@Controller
+ @RequestMapping("post")
+ public class PostController {
+ 
+     @Autowired
+     private PostRepository postRepository;
+ 
++//    @GetMapping("/user/{id}/posts")
++//    public String displayUserPosts(@PathVariable Long userId, Model model) {
++//        model.addAttribute("title", "User Posts");
++//        model.addAttribute("posts", postRepository.findById(???));
++//        return "events/index";
++//    };
+     @GetMapping("create")
+     public String displayPostReviewForm(Model model) {
+         model.addAttribute("title", "Create Review");
