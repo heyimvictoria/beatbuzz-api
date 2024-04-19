@@ -3,14 +3,16 @@ package org.launchcode.controllers;
 import jakarta.validation.Valid;
 import org.launchcode.data.PostRepository;
 import org.launchcode.models.Post;
+import org.launchcode.models.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.validation.Errors;
 
+@RestController
 @Controller
-@RequestMapping("post")
+//@RequestMapping("post")
 public class PostController {
 
     @Autowired
@@ -23,8 +25,8 @@ public class PostController {
         return "post/create";
     }
 
-    @PostMapping("create")
-    public String processCreateEventForm(@ModelAttribute @Valid Post newPost,
+    @PostMapping("/post")
+    public String processCreateEventForm(@RequestBody @Valid Post newPost,
                                          Errors errors, Model model) {
         if(errors.hasErrors()) {
             model.addAttribute("title", "Create Review");
@@ -33,5 +35,10 @@ public class PostController {
 
         postRepository.save(newPost);
         return "redirect:/index";
+
+//    Post newPost(@RequestBody Post newPost){
+//        return postRepository.save(newPost);
+
     }
-}
+
+    }

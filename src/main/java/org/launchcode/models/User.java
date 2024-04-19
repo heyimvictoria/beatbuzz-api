@@ -10,7 +10,7 @@ import java.io.Serializable;
 @Entity
 public class User extends AbstractEntity implements Serializable {
     @NotNull
-    @Column(name = "username")
+//    @Column(name = "username")
     private String username;
 
     @NotNull
