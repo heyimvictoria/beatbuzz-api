@@ -1,14 +1,21 @@
 plugins {
     id 'java'
-    id 'org.springframework.boot' version '3.1.0'
-    id 'io.spring.dependency-management' version '1.1.0'
+    id 'org.springframework.boot' version '3.2.3'
+    id 'io.spring.dependency-management' version '1.1.4'
 }
+
 
 group = 'org.launchcode'
 version = '1.0-SNAPSHOT'
 
 java {
     sourceCompatibility = '17'
+}
+
+configurations {
+    compileOnly {                //was added for Oauth2//
+        extendsFrom annotationProcessor
+    }
 }
 
 repositories {
@@ -18,7 +25,6 @@ repositories {
 dependencies {
     testImplementation platform('org.junit:junit-bom:5.9.1')
     testImplementation 'org.junit.jupiter:junit-jupiter'
-    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
     implementation 'org.springframework.boot:spring-boot-starter-validation'
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
@@ -26,9 +32,22 @@ dependencies {
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     implementation 'mysql:mysql-connector-java:8.0.32'
+    implementation 'org.springframework.boot:spring-boot-starter-oauth2-resource-server' //was added for Oauth2//
+    annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor' //was added for Oauth2//
+
 
 }
 
 test {
     useJUnitPlatform()
 }
+
+
+
+
+
+//plugins {
+//    id 'java'
+//    id 'org.springframework.boot' version '3.2.5'
+//    id 'io.spring.dependency-management' version '1.1.4'
+//}
