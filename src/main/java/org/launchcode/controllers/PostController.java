@@ -1,17 +1,14 @@
 package org.launchcode.controllers;
-
 import jakarta.validation.Valid;
 import org.launchcode.data.PostRepository;
 import org.launchcode.models.Post;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.Banner;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
 import org.springframework.validation.Errors;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
-@Controller
 @RequestMapping("post")
 public class PostController {
 
@@ -27,7 +24,7 @@ public class PostController {
 
     @PostMapping("create")
     public String processPostReviewForm(@ModelAttribute @Valid Post newPost,
-                                         Errors errors, Model model) {
+                                        Errors errors, Model model) {
         if(errors.hasErrors()) {
             model.addAttribute("title", "Create Review");
             return "posts/create";
