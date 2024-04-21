@@ -53,4 +53,14 @@ public class PostController {
 
     }
 
+    @PutMapping("/{postId}")
+    public void editPost(@PathVariable int postId, @RequestBody Post updatedPost) {
+        Post existingPost = postRepository.findById(postId).orElse(null);
+        if (existingPost == null) {
+            throw new IllegalArgumentException("Post not found with ID: " + postId);
+        }
+        // Update the post content
+        existingPost.setContent(updatedPost.getContent());
+        postRepository.save(existingPost);
+    }
 }
