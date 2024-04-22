@@ -21,31 +21,30 @@ public class UserController {
     @Autowired
     private UserRepository userRepository;
 
-    @GetMapping("/users")
+    @GetMapping("/api/users")
     List<User> getAllUsers(){
         return userRepository.findAll();
     }
+    @GetMapping("/user/create")
     public String displayUserCreationForm(Model model) {
         model.addAttribute("title", "Create Name");
         model.addAttribute(new User());
         return "user/create";
     }
 
+    @PostMapping("/api/user")
+    User createUser(@RequestBody @Valid User newUser) {
+        return userRepository.save(newUser);
+    }
     @PostMapping("/user")
-//    public String processCreateEventForm(@RequestBody @Valid User newUser, Errors errors, Model model) {
-//        if(errors.hasErrors()) {
-//            model.addAttribute("title", "Create Name");
-//            return "user/create";
-//        }
-//
-//        userRepository.save(newUser);
-//        return "redirect:/index";
+    public String processCreateEventForm(@ModelAttribute @Valid User newUser, Errors errors, Model model) {
+        if(errors.hasErrors()) {
+            model.addAttribute("title", "Create Name");
+            return "user/create";
+        }
 
-
-
-User newUser(@RequestBody User newUser){
-    return userRepository.save(newUser);
-
+        userRepository.save(newUser);
+        return "redirect:/index";
 
     }
 }

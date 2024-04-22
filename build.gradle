@@ -26,6 +26,7 @@ dependencies {
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     implementation 'mysql:mysql-connector-java:8.0.32'
+    implementation 'com.fasterxml.jackson.datatype:jackson-datatype-hibernate5:2.13.0'
 
 }
 

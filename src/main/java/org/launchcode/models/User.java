@@ -1,24 +1,22 @@
 package org.launchcode.models;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 
 import java.io.Serializable;
+import java.util.List;
 
 @Entity
 public class User extends AbstractEntity implements Serializable {
+
     @NotNull
-//    @Column(name = "username")
     private String username;
 
     @NotNull
     private String pwHash;
-
-
-    public User(){}
-
+    @OneToMany(mappedBy = "user")
+    private List<Post> posts;
+public User(){}
     public User(String username, String pwHash) {
         this.username = username;
         this.pwHash = pwHash;
@@ -39,5 +37,11 @@ public class User extends AbstractEntity implements Serializable {
 
     public void setPwHash(String pwHash) {
         this.pwHash = pwHash;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("User [username=%s, pwHash=%s]", username, pwHash);
+
     }
 }
