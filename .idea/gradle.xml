@@ -12,6 +12,14 @@
           </set>
         </option>
       </GradleProjectSettings>
+      <GradleProjectSettings>
+        <option name="externalProjectPath" value="$USER_HOME$/Downloads/beat-buzz" />
+        <option name="modules">
+          <set>
+            <option value="$USER_HOME$/Downloads/beat-buzz" />
+          </set>
+        </option>
+      </GradleProjectSettings>
     </option>
   </component>
 </project>
