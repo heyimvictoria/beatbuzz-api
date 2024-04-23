@@ -45,7 +45,7 @@ public class SecurityConfig {
         return new ProviderManager(authProvider);
     }
 
-    @Bean
+   @Bean
     public UserDetailsService userDetailsService() {
         return new InMemoryUserDetailsManager(
                 User.withUsername("dvega")

@@ -5,15 +5,18 @@ import org.launchcode.models.LoginRequest;
 import org.launchcode.service.TokenService;
 import org.slf4j.LoggerFactory;
 import org.slf4j.Logger;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.AuthenticationException;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.security.core.Authentication;
 
 @RestController
+@CrossOrigin
 public class AuthController {
 
     private static final Logger LOG = LoggerFactory.getLogger(AuthController.class);
@@ -29,5 +32,7 @@ public class AuthController {
     public String token(@RequestBody LoginRequest userLogin) throws AuthenticationException {
         Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(userLogin.username(), userLogin.password()));
         return tokenService.generateToken(authentication);
+//        return ResponseEntity.ok("test");
+//        ResponseEntity
     }
 }

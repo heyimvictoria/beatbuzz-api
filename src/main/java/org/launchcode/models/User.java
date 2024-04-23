@@ -37,7 +37,4 @@ public class User extends AbstractEntity implements Serializable {
         return pwHash;
     }
 
-    public void setPwHash(String pwHash) {
-        this.pwHash = pwHash;
-    }
 }
