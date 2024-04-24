@@ -8,6 +8,8 @@ import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
+import java.time.LocalDateTime;
+
 @Entity
 public class Post extends AbstractEntity {
 
@@ -30,6 +32,7 @@ private Integer id;
     @JoinColumn(name = "user_id")
     @JsonIgnore // prevents Jackson from trying to serialize the User association
     private User user;
+    private LocalDateTime createdAt;
     public Integer getId() {
         return id;
     }
@@ -66,10 +69,17 @@ private Integer id;
         this.user = user;
     }
 
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
+    }
     public Integer getUserId() { return user != null ? user.getId() : null;}
         @Override
         public String toString() {
-            return String.format("Post [id=%s, content=%s, starRating=%d, albumName=%s]", id, content, starRating, albumName);
+            return String.format("Post [id=%s, content=%s, starRating=%d, albumName=%s, createdAt=%s]", id, content, starRating, albumName, createdAt);
         }
 }
 

@@ -5,10 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="593ddc8a-404a-41ab-b46f-7ee49324a657" name="Changes" comment="application.properties">
-      <change beforePath="$PROJECT_DIR$/.gradle/8.4/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.4/checksums/checksums.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/8.4/checksums/md5-checksums.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.4/checksums/md5-checksums.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/8.4/checksums/sha1-checksums.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.4/checksums/sha1-checksums.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/8.4/dependencies-accessors/dependencies-accessors.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.4/dependencies-accessors/dependencies-accessors.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.4/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.4/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.4/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.4/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.4/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.4/fileHashes/fileHashes.bin" afterDir="false" />
@@ -17,27 +13,14 @@
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/file-system.probe" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/file-system.probe" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/org/launchcode/beatbuzzApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/org/launchcode/beatbuzzApplication.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/classes/java/main/org/launchcode/controllers/PostController.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/org/launchcode/controllers/PostController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/org/launchcode/controllers/UserController.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/org/launchcode/controllers/UserController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/org/launchcode/data/PostRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/org/launchcode/data/PostRepository.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/org/launchcode/models/AbstractEntity.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/org/launchcode/models/AbstractEntity.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/org/launchcode/models/Post.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/org/launchcode/models/Post.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/org/launchcode/models/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/org/launchcode/models/User.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/compileTransaction/stash-dir/User.class.uniqueId2" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/compileTransaction/stash-dir/UserController.class.uniqueId1" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/compileTransaction/stash-dir/UserRepository.class.uniqueId0" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/compileTransaction/stash-dir/Post.class.uniqueId2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/compileTransaction/stash-dir/PostRepository.class.uniqueId1" beforeDir="false" afterPath="$PROJECT_DIR$/build/tmp/compileJava/compileTransaction/stash-dir/PostRepository.class.uniqueId1" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/compileTransaction/stash-dir/User.class.uniqueId3" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" beforeDir="false" afterPath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/queries.sql" beforeDir="false" afterPath="$PROJECT_DIR$/queries.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/launchcode/beatbuzzApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/launchcode/beatbuzzApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/launchcode/controllers/Dto/PostRequestDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/launchcode/controllers/Dto/PostRequestDto.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/launchcode/controllers/PostController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/launchcode/controllers/PostController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/launchcode/controllers/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/launchcode/controllers/UserController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/launchcode/data/PostRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/launchcode/data/PostRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/launchcode/models/AbstractEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/launchcode/models/AbstractEntity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/launchcode/models/Post.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/launchcode/models/Post.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/launchcode/models/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/launchcode/models/User.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -77,7 +60,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="main" />
+        <entry key="$PROJECT_DIR$" value="SQL" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />

@@ -14,6 +14,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.validation.Errors;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -32,10 +33,14 @@ public class PostController {
     public Optional<Post> getPostById(@PathVariable Integer postId) {
         return postRepository.findById(postId);
     }
-   @GetMapping("/api/posts")
+    @GetMapping("/api/posts")
     List<Post> getAllPosts(){
-       return postRepository.findAll();
-   }
+        return postRepository.findAll();
+    }
+    @GetMapping("/api/posts/user/{userId}") //finds all posts made by same user
+    public List<Post> getAllPostsByUser(@PathVariable Integer userId) {
+        return postRepository.findByUser_Id(userId);
+    }
     @GetMapping("/post/create")
     public String displayPostReviewForm(Model model) {
         model.addAttribute("title", "Create Review");
@@ -45,6 +50,7 @@ public class PostController {
 
     @PostMapping("/api/posts")
     public ResponseEntity<String> createPost(@RequestBody @Valid PostRequestDto postDto) {
+       System.out.println("Received post request: " + postDto);
         // Extract information from the postDto and create a new Post object
         Post newPost = new Post();
         newPost.setContent(postDto.getContent());
@@ -59,6 +65,8 @@ public class PostController {
 
         // Set the user for the new post
         newPost.setUser(user);
+        //Set time of creation
+        newPost.setCreatedAt(LocalDateTime.now());
 
         // Save the new post to the database
         postRepository.save(newPost);
@@ -75,5 +83,5 @@ public class PostController {
 
         postRepository.save(newPost);
         return "redirect:/index";
-        }
     }
+}
