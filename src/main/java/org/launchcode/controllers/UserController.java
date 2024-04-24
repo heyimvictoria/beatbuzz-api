@@ -9,34 +9,42 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
+@RestController
 @Controller
-@RequestMapping("user")
+//@RequestMapping("user")
 public class UserController {
 
     @Autowired
-    private UserRepository postRepository;
+    private UserRepository userRepository;
 
-    @GetMapping("create")
+    @GetMapping("/api/users")
+    List<User> getAllUsers(){
+        return userRepository.findAll();
+    }
+    @GetMapping("/user/create")
     public String displayUserCreationForm(Model model) {
         model.addAttribute("title", "Create Name");
         model.addAttribute(new User());
         return "user/create";
     }
 
-    @PostMapping("create")
-    public String processCreateEventForm(@ModelAttribute @Valid User newUser,
-                                         Errors errors, Model model) {
+    @PostMapping("/api/user")
+    User createUser(@RequestBody @Valid User newUser) {
+        return userRepository.save(newUser);
+    }
+    @PostMapping("/user")
+    public String processCreateEventForm(@ModelAttribute @Valid User newUser, Errors errors, Model model) {
         if(errors.hasErrors()) {
             model.addAttribute("title", "Create Name");
             return "user/create";
         }
 
-        postRepository.save(newUser);
+        userRepository.save(newUser);
         return "redirect:/index";
+
     }
 }
