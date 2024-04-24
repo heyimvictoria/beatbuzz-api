@@ -29,7 +29,7 @@ public class PostController {
     @Autowired
     private UserRepository userRepository;
 
-    @GetMapping("api/posts/{postId}")
+    @GetMapping("/api/posts/{postId}")
     public Optional<Post> getPostById(@PathVariable Integer postId) {
         return postRepository.findById(postId);
     }
@@ -41,12 +41,7 @@ public class PostController {
     public List<Post> getAllPostsByUser(@PathVariable Integer userId) {
         return postRepository.findByUser_Id(userId);
     }
-    @GetMapping("/post/create")
-    public String displayPostReviewForm(Model model) {
-        model.addAttribute("title", "Create Review");
-        model.addAttribute("post", new Post());
-        return "post/create";
-    }
+
 
     @PostMapping("/api/posts")
     public ResponseEntity<String> createPost(@RequestBody @Valid PostRequestDto postDto) {
@@ -56,6 +51,7 @@ public class PostController {
         newPost.setContent(postDto.getContent());
         newPost.setStarRating(postDto.getStarRating());
         newPost.setAlbumName(postDto.getAlbumName());
+        newPost.setCreatedAt(LocalDateTime.now());
 
         // Fetch the user from the database using the user ID provided in the postDto
         User user = userRepository.findById(postDto.getUserId()).orElse(null);
@@ -67,11 +63,34 @@ public class PostController {
         newPost.setUser(user);
         //Set time of creation
         newPost.setCreatedAt(LocalDateTime.now());
-
+        // Initialize likes to 0
+        newPost.setLikes(0);
         // Save the new post to the database
         postRepository.save(newPost);
 
         return ResponseEntity.status(HttpStatus.CREATED).body("Post created successfully");
+    }
+    @PostMapping("/api/posts/{postId}/like")
+    public ResponseEntity<?> likePost(@PathVariable Integer postId) {
+        try {
+            Optional<Post> optionalPost = postRepository.findById(postId);
+            if (optionalPost.isPresent()) {
+                Post post = optionalPost.get();
+                post.setLikes(post.getLikes() + 1);
+                postRepository.save(post);
+                return ResponseEntity.ok("Post liked successfully");
+            } else {
+                return ResponseEntity.notFound().build();
+            }
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error liking post");
+        }
+    }
+    @GetMapping("/post/create")
+    public String displayPostReviewForm(Model model) {
+        model.addAttribute("title", "Create Review");
+        model.addAttribute("post", new Post());
+        return "post/create";
     }
     @PostMapping("/post/create")
     public String processCreateEventForm(@ModelAttribute @Valid Post newPost,
