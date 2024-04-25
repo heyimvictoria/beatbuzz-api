@@ -1,13 +1,13 @@
-package org.launchcode.services;
-
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-
-@SpringBootApplication
-public class SpringBootSecurityJwtApplication {
-
-    public static void main(String[] args) {
-        SpringApplication.run(SpringBootSecurityJwtApplication.class, args);
-    }
-
-}
+//package org.launchcode.services;
+//
+//import org.springframework.boot.SpringApplication;
+//import org.springframework.boot.autoconfigure.SpringBootApplication;
+//
+//@SpringBootApplication
+//public class SpringBootSecurityJwtApplication {
+//
+//    public static void main(String[] args) {
+//        SpringApplication.run(SpringBootSecurityJwtApplication.class, args);
+//    }
+//
+//}

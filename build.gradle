@@ -33,7 +33,12 @@ dependencies {
     implementation 'org.mindrot:jbcrypt:0.4'
     'org.springframework.boot:spring-boot-starter-mail'
 
+}
 
+jar {
+    manifest {
+        attributes 'Main-Class': 'org.launchcode.Main'
+    }
 }
 
 test {

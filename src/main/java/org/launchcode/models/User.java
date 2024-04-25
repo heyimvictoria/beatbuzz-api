@@ -11,7 +11,6 @@ import jakarta.validation.constraints.Size;
 @Table(name = "users",
         uniqueConstraints = {
                 @UniqueConstraint(columnNames = "username"),
-                @UniqueConstraint(columnNames = "email")
         })
 public class User {
     @Id
@@ -37,7 +36,6 @@ public class User {
 
     public User(String username, String password) {
         this.username = username;
-//        this.email = email;
         this.password = password;
     }
 
