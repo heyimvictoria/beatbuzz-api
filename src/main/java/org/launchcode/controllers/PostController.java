@@ -1,63 +1,136 @@
 package org.launchcode.controllers;
+
 import jakarta.validation.Valid;
+import org.launchcode.controllers.Dto.PostRequestDto;
 import org.launchcode.data.PostRepository;
+import org.launchcode.data.UserRepository;
 import org.launchcode.models.Post;
+import org.launchcode.models.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.validation.Errors;
+
+import java.time.LocalDateTime;
+import java.util.List;
+import java.util.Optional;
 
 @RestController
-@RequestMapping("post")
+@Controller
+//@RequestMapping("post")
 public class PostController {
 
     @Autowired
     private PostRepository postRepository;
 
-    @GetMapping("create")
+    @Autowired
+    private UserRepository userRepository;
+
+    @GetMapping("api/posts/{postId}")
+    public Optional<Post> getPostById(@PathVariable Integer postId) {
+        return postRepository.findById(postId);
+    }
+    @GetMapping("/api/posts")
+    List<Post> getAllPosts(){
+        return postRepository.findAll();
+    }
+    @GetMapping("/api/posts/user/{userId}") //finds all posts made by same user
+    public List<Post> getAllPostsByUser(@PathVariable Integer userId) {
+        return postRepository.findByUser_Id(userId);
+    }
+    @GetMapping("/post/create")
     public String displayPostReviewForm(Model model) {
         model.addAttribute("title", "Create Review");
-        model.addAttribute(new Post());
-        return "posts/create";
+        model.addAttribute("post", new Post());
+        return "post/create";
     }
 
-    @PostMapping("create")
-    public String processPostReviewForm(@ModelAttribute @Valid Post newPost,
-                                        Errors errors, Model model) {
+    @PostMapping("/api/posts")
+    public ResponseEntity<String> createPost(@RequestBody @Valid PostRequestDto postDto) {
+       System.out.println("Received post request: " + postDto);
+        // Extract information from the postDto and create a new Post object
+        Post newPost = new Post();
+        newPost.setContent(postDto.getContent());
+        newPost.setStarRating(postDto.getStarRating());
+        newPost.setAlbumName(postDto.getAlbumName());
+
+        // Fetch the user from the database using the user ID provided in the postDto
+        User user = userRepository.findById(postDto.getUserId()).orElse(null);
+        if (user == null) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("User not found");
+        }
+
+        // Set the user for the new post
+        newPost.setUser(user);
+        //Set time of creation
+        newPost.setCreatedAt(LocalDateTime.now());
+
+        // Save the new post to the database
+        postRepository.save(newPost);
+
+        return ResponseEntity.status(HttpStatus.CREATED).body("Post created successfully");
+    }
+    @PostMapping("/post/create")
+    public String processCreateEventForm(@ModelAttribute @Valid Post newPost,
+                                         Errors errors, Model model) {
         if(errors.hasErrors()) {
             model.addAttribute("title", "Create Review");
-            return "posts/create";
+            return "post/create";
         }
 
         postRepository.save(newPost);
         return "redirect:/index";
     }
 
-    @GetMapping("delete")
-    public String displayDeleteReviewForm(Model model) {
-        model.addAttribute("title", "Delete Review");
-        return "posts/delete";
-    }
 
-    @PostMapping("delete")
-    public String processDeleteReviewForm(@RequestParam(required = false) Integer reviewid){
 
-        if(reviewid != null) {
-            postRepository.deleteById(reviewid);
+
+    @GetMapping("/post/edit/{postId}")
+    public String displayEditForm(@PathVariable Integer postId, Model model) {
+        Optional<Post> optionalPost = postRepository.findById(postId);
+        if (optionalPost.isPresent()) {
+            model.addAttribute("title", "Edit Review");
+            model.addAttribute("post", optionalPost.get());
+            return "post/edit";
+        } else {
+            // Handle post not found scenario
+            return "redirect:/error";
         }
-        return "redirect:/index";
-
     }
 
-    @PutMapping("/{postId}")
-    public void editPost(@PathVariable int postId, @RequestBody Post updatedPost) {
-        Post existingPost = postRepository.findById(postId).orElse(null);
-        if (existingPost == null) {
-            throw new IllegalArgumentException("Post not found with ID: " + postId);
+    @PutMapping("/api/posts/{postId}")
+    public ResponseEntity<String> updatePost(@PathVariable Integer postId, @RequestBody @Valid PostRequestDto postDto) {
+        Optional<Post> optionalPost = postRepository.findById(postId);
+        if (optionalPost.isPresent()) {
+            Post existingPost = optionalPost.get();
+            // Update the existing post with the new data
+            existingPost.setContent(postDto.getContent());
+            existingPost.setStarRating(postDto.getStarRating());
+            existingPost.setAlbumName(postDto.getAlbumName());
+
+            // Save the updated post
+            postRepository.save(existingPost);
+
+            return ResponseEntity.status(HttpStatus.OK).body("Post updated successfully");
+        } else {
+            // If the post with the given ID does not exist
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Post not found");
         }
-        // Update the post content
-        existingPost.setContent(updatedPost.getContent());
-        postRepository.save(existingPost);
     }
+
+    @DeleteMapping("/api/posts/{postId}")
+    public ResponseEntity<String> deletePost(@PathVariable Integer postId) {
+        try {
+            postRepository.deleteById(postId);
+            return ResponseEntity.ok().body("Post deleted successfully");
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error deleting post");
+        }
+    }
+
+
+
 }
