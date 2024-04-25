@@ -28,11 +28,15 @@ private Integer id;
     private int starRating;
 
     private String albumName;
+    //Many posts can belong to one user
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
-    @JsonIgnore // prevents Jackson from trying to serialize the User association
+    @JsonIgnore // prevents serialization of the User when converting to JSON
     private User user;
     private LocalDateTime createdAt;
+    private Integer likes;
+
+    //getters and setters
     public Integer getId() {
         return id;
     }
@@ -72,14 +76,22 @@ private Integer id;
     public LocalDateTime getCreatedAt() {
         return createdAt;
     }
+    public Integer getLikes() {
+        return likes;
+    }
 
+    public void setLikes(Integer likes) {
+        this.likes = likes;
+    }
     public void setCreatedAt(LocalDateTime createdAt) {
         this.createdAt = createdAt;
     }
+    //If user not null post has an associated user, otherwise return null.
     public Integer getUserId() { return user != null ? user.getId() : null;}
-        @Override
-        public String toString() {
-            return String.format("Post [id=%s, content=%s, starRating=%d, albumName=%s, createdAt=%s]", id, content, starRating, albumName, createdAt);
-        }
+    //Returns a string representation
+    @Override
+    public String toString() {
+        return String.format("Post [id=%s, content=%s, starRating=%d, albumName=%s, createdAt=%s, likes=%d]", id, content, starRating, albumName, createdAt, likes);
+    }
 }
 

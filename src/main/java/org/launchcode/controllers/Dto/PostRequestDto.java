@@ -7,6 +7,8 @@ import jakarta.validation.constraints.NotNull;
 
 import java.time.LocalDateTime;
 
+
+//Data Transfer Object (DTO) used for transferring data related to creating a new post.
 public class PostRequestDto {
 
     private String content;

@@ -6,6 +6,7 @@ import jakarta.persistence.MappedSuperclass;
 
 import java.util.Objects;
 
+//mapping information is applied to entities that inherit
 @MappedSuperclass
 public abstract class AbstractEntity {
     @Id
@@ -15,7 +16,7 @@ public abstract class AbstractEntity {
     public Integer getId() {
         return id;
     }
-
+//comparing object for equality
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

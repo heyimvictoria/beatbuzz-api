@@ -18,26 +18,35 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
+//Handles both RESTful and Web requests.
 @RestController
 @Controller
 //@RequestMapping("post")
 public class PostController {
 
     @Autowired
+    //performs CRUD
     private PostRepository postRepository;
 
     @Autowired
+    //Retrieves users
     private UserRepository userRepository;
 
+
+    //Get request retrieves posts by their Id with the PostRepository method
     @GetMapping("/api/posts/{postId}")
     public Optional<Post> getPostById(@PathVariable Integer postId) {
         return postRepository.findById(postId);
     }
+
+    //Retrieves all posts
     @GetMapping("/api/posts")
     List<Post> getAllPosts(){
         return postRepository.findAll();
     }
-    @GetMapping("/api/posts/user/{userId}") //finds all posts made by same user
+
+    //finds all posts made by same user
+    @GetMapping("/api/posts/user/{userId}")
     public List<Post> getAllPostsByUser(@PathVariable Integer userId) {
         return postRepository.findByUser_Id(userId);
     }
@@ -70,6 +79,8 @@ public class PostController {
 
         return ResponseEntity.status(HttpStatus.CREATED).body("Post created successfully");
     }
+
+//   Post request uses postId as path to identify post being liked.
     @PostMapping("/api/posts/{postId}/like")
     public ResponseEntity<?> likePost(@PathVariable Integer postId) {
         try {
