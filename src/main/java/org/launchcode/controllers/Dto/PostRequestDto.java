@@ -5,12 +5,19 @@ import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
+import java.time.LocalDateTime;
+
+
+//Data Transfer Object (DTO) used for transferring data related to creating a new post.
 public class PostRequestDto {
 
     private String content;
     private int starRating;
     private String albumName;
     private int userId;
+
+
+
 
     public String getContent() {
         return content;
@@ -43,4 +50,5 @@ public class PostRequestDto {
     public void setUserId(int userId) {
         this.userId = userId;
     }
+
 }
