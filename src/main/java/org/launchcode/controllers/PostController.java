@@ -84,4 +84,53 @@ public class PostController {
         postRepository.save(newPost);
         return "redirect:/index";
     }
+
+
+
+
+    @GetMapping("/post/edit/{postId}")
+    public String displayEditForm(@PathVariable Integer postId, Model model) {
+        Optional<Post> optionalPost = postRepository.findById(postId);
+        if (optionalPost.isPresent()) {
+            model.addAttribute("title", "Edit Review");
+            model.addAttribute("post", optionalPost.get());
+            return "post/edit";
+        } else {
+            // Handle post not found scenario
+            return "redirect:/error";
+        }
+    }
+
+    @PutMapping("/api/posts/{postId}")
+    public ResponseEntity<String> updatePost(@PathVariable Integer postId, @RequestBody @Valid PostRequestDto postDto) {
+        Optional<Post> optionalPost = postRepository.findById(postId);
+        if (optionalPost.isPresent()) {
+            Post existingPost = optionalPost.get();
+            // Update the existing post with the new data
+            existingPost.setContent(postDto.getContent());
+            existingPost.setStarRating(postDto.getStarRating());
+            existingPost.setAlbumName(postDto.getAlbumName());
+
+            // Save the updated post
+            postRepository.save(existingPost);
+
+            return ResponseEntity.status(HttpStatus.OK).body("Post updated successfully");
+        } else {
+            // If the post with the given ID does not exist
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Post not found");
+        }
+    }
+
+    @DeleteMapping("/api/posts/{postId}")
+    public ResponseEntity<String> deletePost(@PathVariable Integer postId) {
+        try {
+            postRepository.deleteById(postId);
+            return ResponseEntity.ok().body("Post deleted successfully");
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error deleting post");
+        }
+    }
+
+
+
 }

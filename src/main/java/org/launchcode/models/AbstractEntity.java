@@ -10,7 +10,7 @@ import java.util.Objects;
 public abstract class AbstractEntity {
     @Id
     @GeneratedValue
-    private Integer id;
+    public Integer id;
 
     public Integer getId() {
         return id;

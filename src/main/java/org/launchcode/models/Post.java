@@ -18,9 +18,8 @@ public class Post extends AbstractEntity {
 private Integer id;
 
 
-    @NotBlank(message = "Review is required")
+
     @Column(length = 500)
-    @Size(max = 500, message = "Exceeds character limit")
     private String content;
 
     @Min(value = 1, message = "Rating must be at least 1")
