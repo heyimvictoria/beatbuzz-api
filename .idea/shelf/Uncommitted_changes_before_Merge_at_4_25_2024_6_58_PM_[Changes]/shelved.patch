@@ -1,0 +1,49 @@
+Index: build/resources/main/templates/posts/create.html
+===================================================================
+diff --git a/build/resources/main/templates/posts/create.html b/build/resources/main/templates/posts/create.html
+deleted file mode 100644
+--- a/build/resources/main/templates/posts/create.html	(revision 31925ac079d2ca0dd396f08006dae01ae1aceb1d)
++++ /dev/null	(revision 31925ac079d2ca0dd396f08006dae01ae1aceb1d)
+@@ -1,20 +0,0 @@
+-<!DOCTYPE html>
+-<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+-<head>
+-    <meta charset="UTF-8"/>
+-    <title></title>
+-</head>
+-<body>
+-<form method="post">
+-    <div>
+-    <label>Review:
+-        <input th:field="${post.content"}>
+-    </label>
+-    </div>
+-
+-    <div>
+-        <input type="submit" value="Post">
+-    </div>
+-</form>
+-</body>
+-</html>
+\ No newline at end of file
+Index: build/resources/main/templates/index.html
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><!DOCTYPE html>\r\n<html lang=\"en\" xmlns:th=\"http://www.thymeleaf.org/\">\r\n<head>\r\n    <meta charset=\"UTF-8\"/>\r\n    <title>Beat Buzz</title>\r\n</head>\r\n<body>\r\n <h2>PLEASE WORK</h2>\r\n</body>\r\n</html>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/build/resources/main/templates/index.html b/build/resources/main/templates/index.html
+--- a/build/resources/main/templates/index.html	(revision 31925ac079d2ca0dd396f08006dae01ae1aceb1d)
++++ b/build/resources/main/templates/index.html	(date 1714089486485)
+@@ -2,7 +2,10 @@
+ <html lang="en" xmlns:th="http://www.thymeleaf.org/">
+ <head>
+     <meta charset="UTF-8"/>
++    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>Beat Buzz</title>
++    <link rel="stylesheet" href="style.css">
++
+ </head>
+ <body>
+  <h2>PLEASE WORK</h2>

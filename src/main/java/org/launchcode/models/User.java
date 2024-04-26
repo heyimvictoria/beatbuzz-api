@@ -7,6 +7,7 @@ import java.io.Serializable;
 import java.util.List;
 
 @Entity
+//objects in class can be serialized for data persistence
 public class User extends AbstractEntity implements Serializable {
 
     @NotNull
@@ -39,6 +40,7 @@ public User(){}
         this.pwHash = pwHash;
     }
 
+    //Returns a string representation
     @Override
     public String toString() {
         return String.format("User [username=%s, pwHash=%s]", username, pwHash);

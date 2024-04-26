@@ -18,35 +18,39 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
+//Handles both RESTful and Web requests.
 @RestController
 @Controller
 //@RequestMapping("post")
 public class PostController {
 
     @Autowired
+    //performs CRUD
     private PostRepository postRepository;
 
     @Autowired
+    //Retrieves users
     private UserRepository userRepository;
 
-    @GetMapping("api/posts/{postId}")
+
+    //Get request retrieves posts by their Id with the PostRepository method
+    @GetMapping("/api/posts/{postId}")
     public Optional<Post> getPostById(@PathVariable Integer postId) {
         return postRepository.findById(postId);
     }
+
+    //Retrieves all posts
     @GetMapping("/api/posts")
     List<Post> getAllPosts(){
         return postRepository.findAll();
     }
-    @GetMapping("/api/posts/user/{userId}") //finds all posts made by same user
+
+    //finds all posts made by same user
+    @GetMapping("/api/posts/user/{userId}")
     public List<Post> getAllPostsByUser(@PathVariable Integer userId) {
         return postRepository.findByUser_Id(userId);
     }
-    @GetMapping("/post/create")
-    public String displayPostReviewForm(Model model) {
-        model.addAttribute("title", "Create Review");
-        model.addAttribute("post", new Post());
-        return "post/create";
-    }
+
 
     @PostMapping("/api/posts")
     public ResponseEntity<String> createPost(@RequestBody @Valid PostRequestDto postDto) {
@@ -56,6 +60,7 @@ public class PostController {
         newPost.setContent(postDto.getContent());
         newPost.setStarRating(postDto.getStarRating());
         newPost.setAlbumName(postDto.getAlbumName());
+        newPost.setCreatedAt(LocalDateTime.now());
 
         // Fetch the user from the database using the user ID provided in the postDto
         User user = userRepository.findById(postDto.getUserId()).orElse(null);
@@ -67,11 +72,36 @@ public class PostController {
         newPost.setUser(user);
         //Set time of creation
         newPost.setCreatedAt(LocalDateTime.now());
-
+        // Initialize likes to 0
+        newPost.setLikes(0);
         // Save the new post to the database
         postRepository.save(newPost);
 
         return ResponseEntity.status(HttpStatus.CREATED).body("Post created successfully");
+    }
+
+//   Post request uses postId as path to identify post being liked.
+    @PostMapping("/api/posts/{postId}/like")
+    public ResponseEntity<?> likePost(@PathVariable Integer postId) {
+        try {
+            Optional<Post> optionalPost = postRepository.findById(postId);
+            if (optionalPost.isPresent()) {
+                Post post = optionalPost.get();
+                post.setLikes(post.getLikes() + 1);
+                postRepository.save(post);
+                return ResponseEntity.ok("Post liked successfully");
+            } else {
+                return ResponseEntity.notFound().build();
+            }
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error liking post");
+        }
+    }
+    @GetMapping("/post/create")
+    public String displayPostReviewForm(Model model) {
+        model.addAttribute("title", "Create Review");
+        model.addAttribute("post", new Post());
+        return "post/create";
     }
     @PostMapping("/post/create")
     public String processCreateEventForm(@ModelAttribute @Valid Post newPost,

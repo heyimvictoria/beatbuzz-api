@@ -1,0 +1,69 @@
+Index: build/resources/main/templates/posts/create.html
+===================================================================
+diff --git a/build/resources/main/templates/posts/create.html b/build/resources/main/templates/posts/create.html
+deleted file mode 100644
+--- a/build/resources/main/templates/posts/create.html	(revision 31925ac079d2ca0dd396f08006dae01ae1aceb1d)
++++ /dev/null	(revision 31925ac079d2ca0dd396f08006dae01ae1aceb1d)
+@@ -1,20 +0,0 @@
+-<!DOCTYPE html>
+-<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+-<head>
+-    <meta charset="UTF-8"/>
+-    <title></title>
+-</head>
+-<body>
+-<form method="post">
+-    <div>
+-    <label>Review:
+-        <input th:field="${post.content"}>
+-    </label>
+-    </div>
+-
+-    <div>
+-        <input type="submit" value="Post">
+-    </div>
+-</form>
+-</body>
+-</html>
+\ No newline at end of file
+Index: build/resources/main/templates/index.html
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><!DOCTYPE html>\r\n<html lang=\"en\" xmlns:th=\"http://www.thymeleaf.org/\">\r\n<head>\r\n    <meta charset=\"UTF-8\"/>\r\n    <title>Beat Buzz</title>\r\n</head>\r\n<body>\r\n <h2>PLEASE WORK</h2>\r\n</body>\r\n</html>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/build/resources/main/templates/index.html b/build/resources/main/templates/index.html
+--- a/build/resources/main/templates/index.html	(revision 31925ac079d2ca0dd396f08006dae01ae1aceb1d)
++++ b/build/resources/main/templates/index.html	(date 1714089072082)
+@@ -2,7 +2,10 @@
+ <html lang="en" xmlns:th="http://www.thymeleaf.org/">
+ <head>
+     <meta charset="UTF-8"/>
++    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>Beat Buzz</title>
++    <link rel="stylesheet" href="style.css">
++
+ </head>
+ <body>
+  <h2>PLEASE WORK</h2>
+Index: build/resources/main/application.properties
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+># Database connection settings\r\nspring.datasource.url=jdbc:mysql://localhost:3306/beatbuzz\r\nspring.datasource.username=beatbuzz\r\nspring.datasource.password=Music4Ever!\r\nspring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver\r\n\r\n\r\n# Specify the DBMS\r\nspring.jpa.database = MYSQL\r\n\r\n# Show or not log for each sql query\r\nspring.jpa.show-sql = true\r\n\r\n# Hibernate ddl auto (create, create-drop, update)\r\nspring.jpa.hibernate.ddl-auto = update\r\n\r\n# Use spring.jpa.properties.* for Hibernate native properties (the prefix is\r\n# stripped before adding them to the entity manager)\r\nspring.jpa.properties.hibernate.dialect = org.hibernate.dialect.MySQL8Dialect\r\n\r\n## App Properties\r\n#beatbuzz.app.jwtSecret= ======================beatbuzz=Spring===========================\r\n#beatbuzz.app.jwtExpirationMs=86400000
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>ISO-8859-1
+===================================================================
+diff --git a/build/resources/main/application.properties b/build/resources/main/application.properties
+--- a/build/resources/main/application.properties	(revision 31925ac079d2ca0dd396f08006dae01ae1aceb1d)
++++ b/build/resources/main/application.properties	(date 1714089072089)
+@@ -20,4 +20,8 @@
+ 
+ ## App Properties
+ #beatbuzz.app.jwtSecret= ======================beatbuzz=Spring===========================
++#beatbuzz.app.jwtExpirationMs=86400000
++
++## App Properties
++#beatbuzz.app.jwtSecret= ======================beatbuzz=Spring===========================
+ #beatbuzz.app.jwtExpirationMs=86400000
+\ No newline at end of file
