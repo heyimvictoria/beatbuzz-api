@@ -1,7 +1,5 @@
 package org.launchcode.jwt;
 
-package org.launchcode.jwt;
-
 import java.security.Key;
 import java.util.Date;
 
