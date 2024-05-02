@@ -14,8 +14,7 @@ public class PostRequestDto {
     private String content;
     private int starRating;
     private String albumName;
-    private int userId;
-
+    private long userId;
 
 
 
@@ -43,7 +42,7 @@ public class PostRequestDto {
         this.albumName = albumName;
     }
 
-    public int getUserId() {
+    public long getUserId() {
         return userId;
     }
 

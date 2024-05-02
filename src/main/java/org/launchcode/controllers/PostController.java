@@ -35,7 +35,7 @@ public class PostController {
 
     //Get request retrieves posts by their Id with the PostRepository method
     @GetMapping("/api/posts/{postId}")
-    public Optional<Post> getPostById(@PathVariable Integer postId) {
+    public Optional<Post> getPostById(@PathVariable Long postId) {
         return postRepository.findById(postId);
     }
 
@@ -47,7 +47,7 @@ public class PostController {
 
     //finds all posts made by same user
     @GetMapping("/api/posts/user/{userId}")
-    public List<Post> getAllPostsByUser(@PathVariable Integer userId) {
+    public List<Post> getAllPostsByUser(@PathVariable Long userId) {
         return postRepository.findByUser_Id(userId);
     }
 
@@ -62,12 +62,14 @@ public class PostController {
         newPost.setAlbumName(postDto.getAlbumName());
         newPost.setCreatedAt(LocalDateTime.now());
 
+
         // Fetch the user from the database using the user ID provided in the postDto
         User user = userRepository.findById(postDto.getUserId()).orElse(null);
         if (user == null) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("User not found");
         }
 
+        newPost.setUsername(user.getUsername());
         // Set the user for the new post
         newPost.setUser(user);
         //Set time of creation
@@ -82,7 +84,7 @@ public class PostController {
 
 //   Post request uses postId as path to identify post being liked.
     @PostMapping("/api/posts/{postId}/like")
-    public ResponseEntity<?> likePost(@PathVariable Integer postId) {
+    public ResponseEntity<?> likePost(@PathVariable Long postId) {
         try {
             Optional<Post> optionalPost = postRepository.findById(postId);
             if (optionalPost.isPresent()) {
@@ -119,7 +121,7 @@ public class PostController {
 
 
     @GetMapping("/post/edit/{postId}")
-    public String displayEditForm(@PathVariable Integer postId, Model model) {
+    public String displayEditForm(@PathVariable Long postId, Model model) {
         Optional<Post> optionalPost = postRepository.findById(postId);
         if (optionalPost.isPresent()) {
             model.addAttribute("title", "Edit Review");
@@ -132,7 +134,7 @@ public class PostController {
     }
 
     @PutMapping("/api/posts/{postId}")
-    public ResponseEntity<String> updatePost(@PathVariable Integer postId, @RequestBody @Valid PostRequestDto postDto) {
+    public ResponseEntity<String> updatePost(@PathVariable Long postId, @RequestBody @Valid PostRequestDto postDto) {
         Optional<Post> optionalPost = postRepository.findById(postId);
         if (optionalPost.isPresent()) {
             Post existingPost = optionalPost.get();
@@ -152,13 +154,19 @@ public class PostController {
     }
 
     @DeleteMapping("/api/posts/{postId}")
-    public ResponseEntity<String> deletePost(@PathVariable Integer postId) {
+    public ResponseEntity<String> deletePost(@PathVariable Long postId) {
         try {
             postRepository.deleteById(postId);
             return ResponseEntity.ok().body("Post deleted successfully");
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error deleting post");
         }
+    }
+
+    @GetMapping("/api/posts/user/{postId}")
+    public String getUserId(@PathVariable Long postId) {
+         User user = userRepository.findById(postId).orElse(null);;
+        return user.getUsername();
     }
 
 

@@ -35,7 +35,19 @@ private Integer id;
     private LocalDateTime createdAt;
     private Integer likes;
 
+    private String username;
+
     //getters and setters
+
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
     public Integer getId() {
         return id;
     }
@@ -86,11 +98,11 @@ private Integer id;
         this.createdAt = createdAt;
     }
     //If user not null post has an associated user, otherwise return null.
-    public Integer getUserId() { return user != null ? user.getId() : null;}
+    public Long getUserId() { return user != null ? user.getId() : null;}
     //Returns a string representation
     @Override
     public String toString() {
-        return String.format("Post [id=%s, content=%s, starRating=%d, albumName=%s, createdAt=%s, likes=%d]", id, content, starRating, albumName, createdAt, likes);
+        return String.format("Post [id=%s, content=%s, starRating=%d, albumName=%s, createdAt=%s, likes=%d, user=%d]", id, content, starRating, albumName, createdAt, likes);
     }
 }
 

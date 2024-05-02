@@ -13,8 +13,8 @@ import java.util.List;
 //allows access to data stored into the database
 @Repository
 //JpaRepository Spring Data provides methods for CRUD
-public interface PostRepository extends JpaRepository<Post, Integer> {
-    List<Post> findByUser_Id(Integer userId);
+public interface PostRepository extends JpaRepository<Post, Long> {
+    List<Post> findByUser_Id(Long userId);
     //query method for finding post by the user id
     @Modifying //will modify data in the database
     // JPQL query to increment the number of likes for a post with a specific ID

@@ -19,17 +19,14 @@ import org.launchcode.response.JwtResponse;
 import org.launchcode.response.MessageResponse;
 import org.launchcode.services.UserDetailsImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 
 @CrossOrigin(origins = "http://localhost:3000", maxAge = 3600)
@@ -118,5 +115,19 @@ public class AuthController {
         userRepository.save(user);
 
         return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
+    }
+
+    @GetMapping("user")
+    public User returnUser(Authentication authentication) {
+        String username = authentication.getName();
+        return userRepository.findByUsername(username).get();
+    }
+
+    @GetMapping("/read/{username}")
+    public ResponseEntity<User> getUser (Authentication authentication ,@PathVariable String username) {
+        User user = userRepository.findByUsername(username).get();
+        return new ResponseEntity<>(user, HttpStatus.OK);
+
+//        return user;
     }
 }
