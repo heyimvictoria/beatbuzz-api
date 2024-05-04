@@ -46,15 +46,15 @@ public class PostController {
     }
 
     //finds all posts made by same user
-    @GetMapping("/api/posts/user/{userId}")
-    public List<Post> getAllPostsByUser(@PathVariable Long userId) {
-        return postRepository.findByUser_Id(userId);
-    }
+//    @GetMapping("/api/posts/user/{userId}")
+//    public List<Post> getAllPostsByUser(@PathVariable Long userId) {
+//        return postRepository.findByUser_Id(userId);
+//    }
 
 
     @PostMapping("/api/posts")
     public ResponseEntity<String> createPost(@RequestBody @Valid PostRequestDto postDto) {
-       System.out.println("Received post request: " + postDto);
+       System.out.println("Received post request: " + postDto.getContent());
         // Extract information from the postDto and create a new Post object
         Post newPost = new Post();
         newPost.setContent(postDto.getContent());
@@ -163,10 +163,20 @@ public class PostController {
         }
     }
 
-    @GetMapping("/api/posts/user/{postId}")
+    @GetMapping("/api/posts/post/{postId}")
     public String getUserId(@PathVariable Long postId) {
          User user = userRepository.findById(postId).orElse(null);;
         return user.getUsername();
+    }
+
+    @GetMapping("/api/posts/user/{username}")
+    public User getUser(@PathVariable String username) {
+        System.out.println(username);
+        User user = userRepository.findByUsername(username).orElse(null);
+        System.out.println(user);
+        System.out.println("********************************************");
+        return user;
+
     }
 
 
