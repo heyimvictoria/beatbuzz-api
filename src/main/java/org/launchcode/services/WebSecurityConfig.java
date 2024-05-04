@@ -101,7 +101,10 @@ public class WebSecurityConfig { // extends WebSecurityConfigurerAdapter {
                                 .requestMatchers("/api/test/**").permitAll()
                                 .requestMatchers("/api/auth/read/{username}").permitAll()
                                 .requestMatchers("/api/posts/user/{postId}").permitAll()
-                                .anyRequest().authenticated()
+                                .requestMatchers("/api/posts/user/{username}").permitAll()
+                                .anyRequest().permitAll()
+//                                .anyRequest().authenticated()
+
                 );
 
         http.authenticationProvider(authenticationProvider());
