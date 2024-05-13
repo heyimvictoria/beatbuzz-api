@@ -1,26 +1,53 @@
 package org.launchcode.controllers;
 
-import org.launchcode.controllers.Dto.FollowRequestDTO;
+//import org.launchcode.data.PlaylistRepository;
+//import org.launchcode.data.SongRepository;
+import org.launchcode.data.UserRepository;
+import org.launchcode.models.Playlist;
+import org.launchcode.models.Song;
 import org.launchcode.models.User;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
-@RestController
-@RequestMapping("/api/playlist")
-public class PlaylistController {
-    @PostMapping("/addPlaylist")
-    public ResponseEntity<?> addPlaylist() {
-        User playlist = userRepository.findByUsername.orElse(null);
-        // make playlist add user id to it and whatever songs user inputs.
-
-//        User followed = userRepository.findByUsername(?.getUsername()).orElse(null);
-//        if (playlist == null || followed == null) {
-//            return ResponseEntity.badRequest().build();
+import java.util.List;
+//
+//@RestController
+//@RequestMapping("/api/playlist")
+//public class PlaylistController {
+//
+//    @Autowired
+//    private UserRepository userRepository;
+//    @Autowired
+//    private PlaylistRepository playlistRepository;
+//
+//    @Autowired
+//    private SongRepository songRepository;
+//
+//
+//    @PostMapping("/create")
+//    public ResponseEntity<String> createPlaylist(@RequestParam String username,
+//                                                 @RequestParam String playlistName,
+//                                                 @RequestBody List<Song> songs) {
+//
+//        User user = userRepository.findByUsername(username).get();
+//
+//                Playlist playlist = new Playlist();
+//        playlist.setUser(user);
+//        playlist.setPlaylistName(playlistName);
+//
+//        playlistRepository.save(playlist);
+//
+//        for (Song song : songs) {
+//            song.setPlaylist(playlist);
+//            songRepository.save(song);
 //        }
-//        followService.addPlaylist(playlist, followed);
-//        return ResponseEntity.ok().build();
+//
+//        return ResponseEntity.status(HttpStatus.CREATED).body("Playlist created successfully");
 //    }
-}
+//}
+
+
+// make playlist add user id to it and whatever songs user inputs.
+

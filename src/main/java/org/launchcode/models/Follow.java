@@ -1,7 +1,6 @@
 package org.launchcode.models;
 
 import jakarta.persistence.*;
-import org.launchcode.models.User;
 
 
 @Entity
